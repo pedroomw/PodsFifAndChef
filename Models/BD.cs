@@ -57,4 +57,24 @@ public static class BD
         }
         return integrante;
     }
+
+
+    public static void AgregarIntegrante(Integrante integrante)
+    {
+        string query = "INSERT INTO Integrantes (Email, Password, NombreCompleto, DNI, Telefono, Carrera, Rol) " +
+                       "VALUES (@Email, @Password, @NombreCompleto, @DNI, @Telefono, @Carrera, @Rol)";
+        using (SqlConnection connection = new SqlConnection(_connectionString))
+        {
+            connection.Execute(query, new
+            {
+                Email = integrante.Email,
+                Password = integrante.Password,
+                NombreCompleto = integrante.NombreCompleto,
+                DNI = integrante.DNI,
+                Telefono = integrante.Telefono,
+                Carrera = integrante.Carrera,
+                Rol = integrante.Rol
+            });
+        }
+    }
 }
