@@ -5,20 +5,20 @@ public static class BD
 {
     private static string _connectionString = @"Server=localhost;DataBase=EquipoLosPibes;Integrated Security=True;TrustServerCertificate=True;";
 
-    public static Integrante BuscarIntegrante(string email)
+public static Integrante BuscarIntegrante(string email, string contraseña)
+{
+    Integrante integrante = null;
+    using(SqlConnection connection = new SqlConnection(_connectionString))
     {
-        Integrante integrante = null;
-        using(SqlConnection connection = new SqlConnection(_connectionString))
-        {
-            string query = "SELECT * FROM Integrantes WHERE Email = @Email";
-            integrante = connection.QueryFirstOrDefault<Integrante>(query, new { Email = email });
-        }
-        return integrante;
+        string query = "SELECT * FROM Integrantes WHERE Email = @Email AND Password = @Password";
+        integrante = connection.QueryFirstOrDefault<Integrante>(query, new { Email = email, Password = contraseña });
     }
+    return integrante;
+}
     public static void AgregarIntegrante(Integrante integrante)
     {
-        string query = "INSERT INTO Integrantes (Email, Password, Nombre, DNI, Hobby, Edad, Genero) " +
-                       "VALUES (@Email, @Password, @NombreCompleto, @DNI, @Hobby, @Edad, @Genero)";
+     string query = "INSERT INTO Integrantes (Email, Password, Nombre, DNI, Hobby, Edad, Genero) " +
+               "VALUES (@Email, @Password, @Nombre, @DNI, @Hobby, @Edad, @Genero)";
         using (SqlConnection connection = new SqlConnection(_connectionString))
         {
             connection.Execute(query, new

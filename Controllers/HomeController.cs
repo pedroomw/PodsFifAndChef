@@ -23,18 +23,15 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult IniciarSesion(string email)
+    public IActionResult IniciarSesion(string email, string contraseña)
     {
-        Integrante integranteIngresado = BD.BuscarIntegrante(email);
+        Integrante integranteIngresado = BD.BuscarIntegrante(email, contraseña);
         if(integranteIngresado != null)
         {
-            
+            return View("DatosDelHombre");
+        } else {
+            return View("UsuarioNoEncontrado");
         }
     }
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-    }
 }
