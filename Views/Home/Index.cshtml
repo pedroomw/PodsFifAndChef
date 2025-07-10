@@ -1,8 +1,15 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Login";
 }
+<main>
+<h1>Inicie sesión</h1>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+
+<form action ='@Url.Action("ComprobarEmail", "Home")' method="post" enctype="multipart/form-data">
+  <label for="username">Usuario:</label>
+  <input type="text" id="Email" name="Email" placeholder="Ingrese su Email">
+
+  <label for="username">Usuario:</label>
+  <input type="password" id="Contraseña" name="Contraseña" placeholder="Ingrese contraseña">
+</form>
+</main>

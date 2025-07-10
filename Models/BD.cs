@@ -3,38 +3,8 @@ using Dapper;
 
 public static class BD
 {
-    private static string _connectionString = @"PodsFifAndChef=localhost;DataBase=EquipoLosPibes;Integrated Security=True;TrustServerCertificate=True;";
+    private static string _connectionString = @"Server=localhost;DataBase=EquipoLosPibes;Integrated Security=True;TrustServerCertificate=True;";
 
-    public static List<Integrante> Integrantes = new List<Integrante>
-    {
-        new Integrante
-        {
-            Id = 1,
-            Email = "fidelgoldsman@gmail.com",
-            Password = "Fidel",
-            NombreCompleto = "Fidel Goldsman",
-            DNI = "49002222",
-            Telefono = "1159598537",
-            Carrera = "Informática",
-            Rol = "Estudiante"
-        },
-        new Integrante
-        {
-            Id = 2,
-            Email = "poda@gmail.com",
-            Password = "Poda",
-            NombreCompleto = "Poda Pods",
-            DNI = "49002221",
-            Telefono = "1155552222",
-            Carrera = "Informatica",
-            Rol = "Estudiante"
-        }
-
-        
-      
-    };
-
-   
     public static Integrante BuscarIntegrante(string email)
     {
         Integrante integrante = null;
@@ -45,35 +15,21 @@ public static class BD
         }
         return integrante;
     }
-
-
-    public static Integrante BuscarIntegrantePorId(int id)
-    {
-        Integrante integrante = null;
-        using (SqlConnection connection = new SqlConnection(_connectionString))
-        {
-            string query = "SELECT * FROM Integrantes WHERE Id = @Id";
-            integrante = connection.QueryFirstOrDefault<Integrante>(query, new { Id = id });
-        }
-        return integrante;
-    }
-
-
     public static void AgregarIntegrante(Integrante integrante)
     {
-        string query = "INSERT INTO Integrantes (Email, Password, NombreCompleto, DNI, Telefono, Carrera, Rol) " +
-                       "VALUES (@Email, @Password, @NombreCompleto, @DNI, @Telefono, @Carrera, @Rol)";
+        string query = "INSERT INTO Integrantes (Email, Password, Nombre, DNI, Hobby, Edad, Genero) " +
+                       "VALUES (@Email, @Password, @NombreCompleto, @DNI, @Hobby, @Edad, @Genero)";
         using (SqlConnection connection = new SqlConnection(_connectionString))
         {
             connection.Execute(query, new
             {
                 Email = integrante.Email,
                 Password = integrante.Password,
-                NombreCompleto = integrante.NombreCompleto,
+                Nombre = integrante.Nombre,
                 DNI = integrante.DNI,
-                Telefono = integrante.Telefono,
-                Carrera = integrante.Carrera,
-                Rol = integrante.Rol
+                Hobby = integrante.Hobby,
+                Edad = integrante.Edad,
+                Genero = integrante.Genero
             });
         }
     }

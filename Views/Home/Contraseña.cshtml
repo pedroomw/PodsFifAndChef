@@ -1,0 +1,11 @@
+@{
+    ViewData["Title"] = "Login";
+}
+<main>
+
+
+<form action ='@Url.Action("ComprobarContraseña", "Home")' method="post" enctype="multipart/form-data">
+  <label for="username">Usuario:</label>
+  <input type="text" id="Email" name="Email" placeholder="Ingrese contraseña">
+</form>
+</main>

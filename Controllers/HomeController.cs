@@ -23,6 +23,15 @@ public class HomeController : Controller
         return View();
     }
 
+    public IActionResult IniciarSesion(string email)
+    {
+        Integrante integranteIngresado = BD.BuscarIntegrante(email);
+        if(integranteIngresado != null)
+        {
+            
+        }
+    }
+
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {

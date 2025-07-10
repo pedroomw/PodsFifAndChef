@@ -1,14 +1,13 @@
 public class Integrante
 {
-    public int Id { get; set; }
+
     public string Email { get; set; } 
     public string Password { get; set; }
-
-    public string NombreCompleto { get; set; }
-    public string DNI { get; set; }
-    public string Telefono { get; set; }
-    public string Carrera { get; set; }
-    public string Rol { get; set; }
+    public string Nombre { get; set; }
+    public int DNI { get; set; }
+    public string Hobby { get; set; }
+    public int Edad { get; set; }
+    public string Genero { get; set; }
 
     public Integrante() { }
 }
